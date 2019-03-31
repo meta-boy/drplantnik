@@ -1,0 +1,15 @@
+html{
+    background: rgb(41, 41, 41);
+    color: white
+}
+
+.container {
+    text-align: center;
+    color:  white;
+    background: rgb(41, 41, 41);
+}
+
+img {
+    border-radius: .5em;
+    width: 50%;
+}

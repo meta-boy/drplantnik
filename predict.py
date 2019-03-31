@@ -14,73 +14,62 @@ model.compile(loss='binary_crossentropy',
 
 # predicting images
 
+def classes(filename):
+    img = cv2.imread(f"D:/SudoDevsWorkspace/Hackathon/flask_hackathon/static/{filename}")
 
-img = cv2.imread("test.jpg")
+    img = cv2.resize(img, (img_width, img_height))
+    x = image.img_to_array(img)
+    x = np.expand_dims(x, axis=0)
 
-img = cv2.resize(img, (img_width, img_height))
-x = image.img_to_array(img)
-x = np.expand_dims(x, axis=0)
-
-images = np.vstack([x])
-classes = model.predict_classes(images, batch_size=10)
+    images = np.vstack([x])
+    classes = model.predict_classes(images, batch_size=10)
+    print(classes)
 
 
 # print the classes, the images belong to
-def classes():
-    return classes
 
-disease_dict = {
-    '0': 'Venturia inaequalis',
-    '1': 'Botryosphaeria obtusa',
-    '2': 'Gymnosporangium juniperi-virginianae ',
-    '3': 'healthy',
-    '4': 'healthy',
-    '5': 'healthy',
-    '6': 'Podoshaera clandestine',
-    '7': 'Cercospora zeae-maydis',
-    '8': 'Puccinia sorghi',
-    '9': 'healthy',
-    '10': 'Exserohilum turcicum',
-    '11': 'Guignardia bidwellii',
-    '12': 'Phaeomoniella aleophilum, Phaeomoniella chlamydospora',
-    '13': 'healthy',
-    '14': 'Pseudocercospora vitis ',
-    '15': 'Candidatus Liberibacter spp',
-    '16': 'Xanthomonas campestris',
-    '17': 'healthy',
-    '18': ' Xanthomonas campestris',
-    '19': 'healthy',
-    '20': 'Alternaria solani',
-    '21': 'healthy',
-    '22': 'Phytophthora infestans',
-    '23': 'healthy',
-    '24': 'healthy',
-    '25': 'Erysiphe cichoracearum',
-    '26': 'healthy',
-    '27': 'Diplocarpon earlianum',
-    '28': 'Xanthomonas campestris pv. vesicatoria',
-    '29': 'Alternaria solani',
-    '30': 'Phytophthora infestans',
-    '31': 'Passalora fulva',
-    '32': 'Septoria lycopersici',
-    '33': 'Tetranychus urticae',
-    '34': 'Corynespora cassiicola',
-    '35': 'Mosaic Virus',
-    '36': 'Yellow Leaf Curl Virus',
-    '37': 'healthy'
-}
+    
 
-# from scrapper import Google
-# import asyncio
+    disease_dict = {
+        '0': 'Venturia inaequalis',
+        '1': 'Botryosphaeria obtusa',
+        '2': 'Gymnosporangium juniperi-virginianae ',
+        '3': 'healthy',
+        '4': 'healthy',
+        '5': 'healthy',
+        '6': 'Podoshaera clandestine',
+        '7': 'Cercospora zeae-maydis',
+        '8': 'Puccinia sorghi',
+        '9': 'healthy',
+        '10': 'Exserohilum turcicum',
+        '11': 'Guignardia bidwellii',
+        '12': 'Phaeomoniella aleophilum, Phaeomoniella chlamydospora',
+        '13': 'healthy',
+        '14': 'Pseudocercospora vitis ',
+        '15': 'Candidatus Liberibacter spp',
+        '16': 'Xanthomonas campestris',
+        '17': 'healthy',
+        '18': ' Xanthomonas campestris',
+        '19': 'healthy',
+        '20': 'Alternaria solani',
+        '21': 'healthy',
+        '22': 'Phytophthora infestans',
+        '23': 'healthy',
+        '24': 'healthy',
+        '25': 'Erysiphe cichoracearum',
+        '26': 'healthy',
+        '27': 'Diplocarpon earlianum',
+        '28': 'Xanthomonas campestris pv. vesicatoria',
+        '29': 'Alternaria solani',
+        '30': 'Phytophthora infestans',
+        '31': 'Passalora fulva',
+        '32': 'Septoria lycopersici',
+        '33': 'Tetranychus urticae',
+        '34': 'Corynespora cassiicola',
+        '35': 'Mosaic Virus',
+        '36': 'Yellow Leaf Curl Virus',
+        '37': 'healthy'
+    }
 
+    return disease_dict[str(classes[0])]
 
-
-
-# event_loop = asyncio.get_event_loop()
-# try:
-#     event_loop.run_until_complete(Google().g(disease_dict[str(classes[0])] + " medication"))
-# finally:
-#     event_loop.close()
-
-
-# print(disease_dict[str(classes[0])])
